@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search Page
+{% endblock %}
+
+{% block main %}
+{% if error_messages %}
+    {{error_messages}}
+    {% endif %}
+    <form action="{{ url_for('searchbooks') }}" method="post">
+        <fieldset>
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="isbn" placeholder="ISBN number" type="text"/>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">Search</button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

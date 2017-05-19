@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Books Page
+{% endblock %}
+{% block head %}
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+{% endblock %}
+
+{% block main %}
+	
+	<table>
+	<tr>
+    	<th>ISBN Number</th>
+    	<th>Book Title</th>
+    	<th>Delete</th>
+	</tr>
+	{% for book in user_books %}
+	<tr>
+		<td>{{book[1]}}</td>
+		<td>{{book[2]}}</td>
+		<td><a href="{{url_for('deletebooks', isbn=book[1])}}">Delete</a></td>
+	</tr>
+	{% endfor %}
+	</table>
+
+<br>
+<a href="{{url_for('searchbooks')}}"> Search Books for Saving</a>
+
+{% endblock %}

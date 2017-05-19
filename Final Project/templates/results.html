@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search Page
+{% endblock %}
+{% block head %}
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+{% endblock %}
+
+
+{% block main %}
+<table>
+    <tr>
+        <th>thumbnail</th>
+        <th>Book Title</th>
+        <th>Author</th>
+        <th>PageCount</th>
+        <th>Add/Delete</th>
+    </tr>
+    {% for book in book_data %}
+        <tr>
+        <td><img src="{{book['volumeInfo']['imageLinks']['thumbnail']}}"></td>
+        <td>{{book['volumeInfo']['title']}}</td>
+        <td>{{book['volumeInfo']['authors'][0]}}</td>
+        <td>{{book['volumeInfo']['pageCount']}}</td>
+        <td><a href="{{ url_for('addbooks', isbn=isbn, title=book['volumeInfo']['title'])}}">Add to your account</a></td>
+        </tr>
+    {% endfor %}
+</table>
+<br>
+<a href="{{url_for('searchbooks')}}"> Search Books for Saving</a>
+{% endblock %}
